@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babe's birthdate</title>
+    
+</head>
+<body>
+    <h2>New year</h2>
+    <div class="countdown-container">
+ <div class="countdown-el days-c">
+     <p class="big-test" id="days">0</p>
+     <span>Days</span>
+ </div>
+ <div class="countdown-el hours-c">
+    <p class="big-test" id="hours">0</p>
+    <span>Hours</span>
+</div>
+<div class="countdown-el mins-c">
+    <p class="big-test" id="mins">0</p>
+    <span>Mins</span>
+</div>
+<div class="countdown-el sec-c">
+    <p class="big-test" id="sec">0</p>
+    <span>Seconds</span>
+</div>
+
+    </div>
+    <script>
+        const daysEl = document.getElementById("days");
+ const hoursEl = document.getElementById("hours");
+ const minsEl = document.getElementById("mins");
+ const secEl = document.getElementById("sec"); 
+
+ const newYear = '01 jan 2023';
+
+  function countdown(){
+      const newYearDate = new Date(newYear);
+      const currentDate = new Date();
+
+      const totalSeconds = (newYearDate- currentDate)/1000;
+
+      const days = Math.floor(totalSeconds/3600/24);
+      const hours = Math.floor(totalSeconds/3600) % 24;
+
+      const mins = Math.floor(totalSeconds/60) % 60;
+      const seconds = Math.floor(totalSeconds) % 60;
+
+    daysEl.innerHTML=days;
+     hoursEl.innerHTML=formatTime(hours);
+     minsEl.innerHTML= formatTime(mins);
+     secEl.innerHTML=formatTime(seconds);
+     /* console.log( days, hours, mins, seconds) */
+     
+  }
+  function formatTime(time){
+      if (time < 10) {
+          return ("0"+time)
+      } else {
+          return time
+      }
+  }
+ /*  function formatTime(time){
+      return time < 10 ? `0${time}` : time ;
+  } */
+  countdown();
+
+  setInterval(countdown, 1000);
+
+</body>
+</html>
